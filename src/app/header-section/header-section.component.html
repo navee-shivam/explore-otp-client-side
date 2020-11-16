@@ -1,0 +1,32 @@
+<div>
+    <div >
+        <br>
+        <br>
+        <div class = "horizontal-align">
+            <label > Enter Email Id to generate OTP </label>
+            <input #inputValue
+                type="text" 
+                class = "form-control input-width position-relative" 
+                [disabled]="valid" required/>
+            <br>
+        </div>
+        <div class = "horizontal-align">
+            <button mat-raised-button color="primary" (click) = "makeOTPFetch(inputValue.value)" [disabled] = "valid">Generate OTP</button>
+            <br>
+            <button  class = "position-relative-button" mat-raised-button color="primary" [disabled] = "!valid" (click) = "makeColumnFetch()">Enable Field</button>
+            <br>
+        </div>
+        <br><br>
+        <div *ngIf = "isOtpEnabled">
+            <input #otpValue type="text" class = "form-control input-width "/>
+            <br>
+            <button mat-raised-button color="primary" (click) = "doValidate(inputValue.value,otpValue.value)">Submit OTP</button>
+        </div>
+        <div *ngIf = "validMessage">
+            Authentication success!!!
+        </div>
+        <div *ngIf = "failureMessage">
+            please try again
+        </div>
+    </div>
+</div>
