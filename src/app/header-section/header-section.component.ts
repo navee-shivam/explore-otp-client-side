@@ -16,6 +16,7 @@ export class HeaderSectionComponent implements OnInit {
   isOtpEnabled: boolean;
   validMessage: boolean;
   failureMessage:boolean;
+  isResetButtonEnable: boolean;
 
   constructor(private postService: PostService) { }
 
@@ -32,7 +33,7 @@ export class HeaderSectionComponent implements OnInit {
     console.log(inputValue)
   }
 
-  makeColumnFetch() {
+  doEnableFields() {
     this.valid = false;
     this.isOtpEnabled = false;
     console.log("clicked")
@@ -43,6 +44,24 @@ export class HeaderSectionComponent implements OnInit {
     console.log(code);
     this.postService.getAll(email,code)
       .subscribe(posts => console.log);
+  }
+
+  resetCountDownEvent(event) {
+    if(event.action == 'done'){
+      console.log("completed");
+      this.isResetButtonEnable = false;
+    }
+  }
+
+  doInitializeAgain(event){
+    if(event.action == 'done'){
+      alert("Time over");
+      this.doEnableFields();
+    }
+  }
+
+  onClickReset(){
+    this.isResetButtonEnable = true;
   }
 
 }

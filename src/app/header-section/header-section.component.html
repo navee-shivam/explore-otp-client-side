@@ -1,7 +1,6 @@
 <div>
     <div >
         <br>
-        <br>
         <div class = "horizontal-align">
             <label > Enter Email Id to generate OTP </label>
             <input #inputValue
@@ -13,7 +12,7 @@
         <div class = "horizontal-align">
             <button mat-raised-button color="primary" (click) = "makeOTPFetch(inputValue.value)" [disabled] = "valid">Generate OTP</button>
             <br>
-            <button  class = "position-relative-button" mat-raised-button color="primary" [disabled] = "!valid" (click) = "makeColumnFetch()">Enable Field</button>
+            <button  class = "position-relative-button" mat-raised-button color="primary" [disabled] = "!valid" (click) = "doEnableFields()">Enable Field</button>
             <br>
         </div>
         <br><br>
@@ -21,6 +20,13 @@
             <input #otpValue type="text" class = "form-control input-width "/>
             <br>
             <button mat-raised-button color="primary" (click) = "doValidate(inputValue.value,otpValue.value)">Submit OTP</button>
+            
+            <button  class = "position-relative-button" mat-raised-button color="primary" 
+            [disabled] = "isResetButtonEnable" (click)="onClickReset(resetCountDown.restart())">
+            Resend OTP Field</button>
+            <countdown #resetCountDown [config]="{leftTime: 10, format: 'mm:s'}" (event)="resetCountDownEvent($event)"></countdown>
+            <br>
+            <countdown [config]="{leftTime: 30, format: 'm:s'}" (event)="doInitializeAgain($event)"></countdown>
         </div>
         <div *ngIf = "validMessage">
             Authentication success!!!

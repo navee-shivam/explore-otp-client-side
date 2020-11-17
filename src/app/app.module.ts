@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './ui-module/material.module';
 import { PostService } from './services/post.service';
 import { HeaderSectionComponent } from './header-section/header-section.component';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HeaderSectionComponent } from './header-section/header-section.componen
     ReactiveFormsModule,
     HttpClientModule,
     //Adding Material Design Module
-    MaterialModule
+    MaterialModule,
+    CountdownModule,
   ],
   providers: [
     PostService,
