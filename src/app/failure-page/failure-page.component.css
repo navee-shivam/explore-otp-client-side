@@ -1,0 +1,15 @@
+.horizontal-align {
+    display: flex;
+    flex-direction: row;
+}
+
+.position-relative {
+    position: relative;
+    left: 1rem;
+    top: -7px;
+}
+
+.position-relative-button {
+    position: relative;
+    left: 1rem;
+}

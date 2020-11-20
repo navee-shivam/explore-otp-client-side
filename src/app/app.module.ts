@@ -11,13 +11,17 @@ import { AppComponent } from './app.component';
 //importing material icon module
 import { MaterialModule } from './ui-module/material.module';
 import { PostService } from './services/post.service';
-import { HeaderSectionComponent } from './header-section/header-section.component';
 import { CountdownModule } from 'ngx-countdown';
+import { HeaderSectionComponent } from './header-section/header-section.component';
+import { SuccessPageComponent } from './success-page/success-page.component';
+import { FailurePageComponent } from './failure-page/failure-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderSectionComponent
+    HeaderSectionComponent,
+    SuccessPageComponent,
+    FailurePageComponent
   ],
   imports: [
     BrowserModule,

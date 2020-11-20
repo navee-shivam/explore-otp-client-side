@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 /**
  * Material Component modules add here
@@ -21,7 +22,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatChipsModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatButtonModule,
@@ -31,7 +33,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatCardModule,
     MatChipsModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class MaterialModule {}

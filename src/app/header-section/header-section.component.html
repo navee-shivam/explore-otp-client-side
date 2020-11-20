@@ -1,38 +1,44 @@
 <div>
-    <div >
+    <div *ngIf="isNavigated" >
         <br>
         <div class = "horizontal-align">
             <label > Enter Email Id to generate OTP </label>
-            <input #inputValue
-                type="text" 
+                <input #inputValue
+                type="email"  name="email" ngModel email
                 class = "form-control input-width position-relative" 
                 [disabled]="valid" required/>
             <br>
         </div>
         <div class = "horizontal-align">
-            <button mat-raised-button color="primary" (click) = "makeOTPFetch(inputValue.value)" [disabled] = "valid">Generate OTP</button>
+            <button mat-raised-button color="primary" (click) = "makeOTPFetch(inputValue)" [disabled] = "valid" >Generate OTP</button>
             <br>
             <button  class = "position-relative-button" mat-raised-button color="primary" [disabled] = "!valid" (click) = "doEnableFields()">Enable Field</button>
             <br>
         </div>
         <br><br>
         <div *ngIf = "isOtpEnabled">
-            <input #otpValue type="text" class = "form-control input-width "/>
+                <label > Enter OTP </label>
+            <input #otpValue type="text" class = "form-control input-width position-relative"/>
+
             <br>
-            <button mat-raised-button color="primary" (click) = "doValidate(inputValue.value,otpValue.value)">Submit OTP</button>
+            <button mat-raised-button color="primary" (click) = "doSubmit(inputValue.value,otpValue.value)">Submit OTP</button>
             
             <button  class = "position-relative-button" mat-raised-button color="primary" 
-            [disabled] = "isResetButtonEnable" (click)="onClickReset(resetCountDown.restart())">
-            Resend OTP Field</button>
-            <countdown #resetCountDown [config]="{leftTime: 10, format: 'mm:s'}" (event)="resetCountDownEvent($event)"></countdown>
+            [disabled] = "isResetButtonEnable" (click)="onClickReset(resetCountDown.restart(),inputValue.value)"> Resend OTP Field</button>
+            
+            <countdown class = "position-relative-button" #resetCountDown [config]="{leftTime: 10, format: 'mm:s'}" (event)="resetCountDownEvent($event,resetCountDown)"></countdown>
+
             <br>
-            <countdown [config]="{leftTime: 30, format: 'm:s'}" (event)="doInitializeAgain($event)"></countdown>
+
+            <countdown [config]="{leftTime: 100, format: 'm:s'}" (event)="doInitializeAgain($event,inputValue.value)"></countdown>
+
         </div>
-        <div *ngIf = "validMessage">
+        <div *ngIf = "successMessage">
             Authentication success!!!
         </div>
         <div *ngIf = "failureMessage">
             please try again
         </div>
     </div>
+    <router-outlet></router-outlet>
 </div>
