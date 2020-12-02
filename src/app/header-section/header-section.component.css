@@ -13,3 +13,21 @@
     position: relative;
     left: 1rem;
 }
+
+.progress-bar {
+    position: absolute;
+    top:270px;
+    max-width: 107px;
+}
+
+.progress-bar-reset {
+    position: absolute;
+    top:50px;
+    max-width: 140px;
+}
+
+.reset-otp-button-timer {
+    position: absolute;
+    top: 219px;
+    left: 177px;
+}

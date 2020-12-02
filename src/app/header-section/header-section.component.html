@@ -1,14 +1,22 @@
 <div>
+    <div>
+        <div *ngIf=isRequired
+        class="alert alert-danger">
+            <div *ngIf=true>
+                {{isInvalid}}
+            </div>
+    </div>
     <div *ngIf="isNavigated" >
         <br>
         <div class = "horizontal-align">
-            <label > Enter Email Id to generate OTP </label>
+            <label for = "email"> Enter Email Id to generate OTP </label>
                 <input #inputValue
                 type="email"  name="email" ngModel email
                 class = "form-control input-width position-relative" 
-                [disabled]="valid" required/>
+                [disabled]="valid" required (focusout) ="doOnChangeEvent($event)"/>
             <br>
         </div>
+
         <div class = "horizontal-align">
             <button mat-raised-button color="primary" (click) = "makeOTPFetch(inputValue)" [disabled] = "valid" >Generate OTP</button>
             <br>
@@ -17,20 +25,21 @@
         </div>
         <br><br>
         <div *ngIf = "isOtpEnabled">
+            <div>
                 <label > Enter OTP </label>
-            <input #otpValue type="text" class = "form-control input-width position-relative"/>
-
-            <br>
-            <button mat-raised-button color="primary" (click) = "doSubmit(inputValue.value,otpValue.value)">Submit OTP</button>
+                <input #otpValue type="text" class = "form-control input-width position-relative"/>
+            </div>
             
-            <button  class = "position-relative-button" mat-raised-button color="primary" 
-            [disabled] = "isResetButtonEnable" (click)="onClickReset(resetCountDown.restart(),inputValue.value)"> Resend OTP Field</button>
+            <div>
+                <button mat-raised-button color="primary" (click) = "doSubmit(inputValue.value,otpValue.value)">Submit OTP</button>
+                <mat-progress-bar class = "progress-bar" mode="determinate" [color]="color" [value]="otpSubmitTimer"></mat-progress-bar>
+            </div>
             
-            <countdown class = "position-relative-button" #resetCountDown [config]="{leftTime: 10, format: 'mm:s'}" (event)="resetCountDownEvent($event,resetCountDown)"></countdown>
-
-            <br>
-
-            <countdown [config]="{leftTime: 100, format: 'm:s'}" (event)="doInitializeAgain($event,inputValue.value)"></countdown>
+            <div class = "reset-otp-button-timer">
+                <button mat-raised-button color="primary" 
+                [disabled] = "isResetButtonEnable" (click)="onClickReset(inputValue.value)"> Resend OTP Field</button>
+                <mat-progress-bar class = "progress-bar-reset" mode="determinate" [color]="color" [value]="resendOtpTimer"></mat-progress-bar>
+            </div>
 
         </div>
         <div *ngIf = "successMessage">
@@ -40,5 +49,6 @@
             please try again
         </div>
     </div>
+
     <router-outlet></router-outlet>
 </div>

@@ -27,7 +27,7 @@ export class DataService {
   create(resource){
     const params = new HttpParams()
         .set('email', resource);
-    return this.httpClient.post(this.rootURL+ 'doGenerateOTP' , resource).subscribe(response => response);
+    return this.httpClient.post(this.rootURL+ 'doGenerateOTP' , resource).subscribe(response => console.log(response));
     
   }
 
